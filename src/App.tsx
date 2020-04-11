@@ -1,25 +1,25 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
-
-function App() {
+import {Link, Router} from '@reach/router';
+import AddUser from "./components/AddUser";
+import SearchComponet from "./components/searchcomponent";
+import state from "./redux/store";
+import {Provider} from 'react-redux'
+import UserComponent from "./components/UsersComponent";
+function App(props:any) {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Provider store={state} >
+<div>
+    <div className="container text-center">
+        <Link to="/add"><button className="btn btn-light">ADD</button></Link>
+        <Link to="/search"><button className="btn btn-light">Search</button></Link>
     </div>
+    <Router>
+        <AddUser path={"/add"} />
+        <SearchComponet path={"/search"} />
+    </Router>
+    <UserComponent/>
+</div>
+      </Provider>
   );
 }
 
